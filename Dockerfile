@@ -10,4 +10,4 @@ COPY . $APP_HOME
 WORKDIR $APP_HOME
 
 RUN pip install Flask
-CMD ["python", "invoker.py"]
+CMD ["python", "trace.py"]
