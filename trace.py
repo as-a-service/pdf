@@ -1,5 +1,6 @@
 import os
 import shutil
+import requests
 
 from flask import Flask
 from flask import request
@@ -11,18 +12,19 @@ app = Flask(__name__)
 
 @app.route('/')
 def trace():
-    bmp_location = '/tmp/bmp/'
-    traces_location = '/tmp/traces/'
-    svg_name = 'trace'
-    svg_filename = traces_location + svg_name + '.svg'
+    input_image_file = '/tmp/input'
+    bmp_image_file = '/tmp/temp.bmp'
+    svg_filename = '/tmp/trace.svg'
 
-    input_image_file = 'head-orig3.png'
-    bmp_image_file = bmp_location + 'temp.bmp'
+    url = request.args.get('url', type = str)   
+    if not url:
+        return "please provide URL of image to trace with ?url="
 
-    if not os.path.exists(bmp_location):
-        os.makedirs(bmp_location)
-    if not os.path.exists(traces_location):
-        os.makedirs(traces_location)
+    # Download image from URL
+    response = requests.get(url, stream=True)
+    with open(input_image_file, 'wb') as file:
+        shutil.copyfileobj(response.raw, file)
+    del response
 
     # Convert image to .bmp
     call('convert %s %s' % (input_image_file, bmp_image_file), shell=True)
