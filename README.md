@@ -12,6 +12,9 @@ A simple web service that traces the given bitmap image into an SVG file.
 * Start with `docker run -p 8080:8080 trace`
 * Open in your browser at `http://localhost:8080/?url=https://www.wikipedia.org/portal/wikipedia.org/assets/img/Wikipedia-logo-v2.png`
 
+## Deploy to your server
+
+The following container image always reflects the latest version of the `master` branch of this repo: `gcr.io/steren-demo/github.com/steren/trace`
 
 ## TODO
 
