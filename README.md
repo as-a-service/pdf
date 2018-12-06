@@ -2,6 +2,8 @@
 
 A simple web service that traces the given bitmap image into an SVG file. 
 
+Run with `docker run -p 8080:8080 gcr.io/steren-demo/trace`
+
 ### URL parameters:
 
 * `input`: URL of the image to trace.
