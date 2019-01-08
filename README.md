@@ -16,7 +16,7 @@ Run with `docker run -p 8080:8080 gcr.io/steren-demo/trace`
 
 ## Deploy to your server
 
-The following container image always reflects the latest version of the `master` branch of this repo: `gcr.io/steren-demo/github.com/steren/trace`
+The following container image always reflects the latest version of the `master` branch of this repo: `gcr.io/steren-demo/trace`
 
 ## TODO
 
