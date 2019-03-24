@@ -20,4 +20,4 @@ The following container image always reflects the latest version of the `master`
 
 ## TODO
 
-* also accept images via POST requests.
+* handle concurrency
