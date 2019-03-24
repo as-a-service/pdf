@@ -23,9 +23,9 @@ def allowed_file(filename):
 def api():
     file_name = 'document' 
     folder_name = 'convert'
-    input_dir = '/tmp/' + folder_name
+    input_dir = os.path.join('/tmp', folder_name)
     input_file =  os.path.join(input_dir, file_name)
-    output_dir = '/tmp/' + folder_name
+    output_dir = input_dir
     output_file = os.path.join(output_dir, file_name + '.pdf')
     
     os.mkdir(input_dir)
