@@ -2,7 +2,7 @@ import os
 import shutil
 import requests
 
-from flask import Flask, request, send_file
+from flask import Flask, render_template, request, send_file
 from subprocess import call
 
 UPLOAD_FOLDER = '/tmp'
@@ -47,19 +47,7 @@ def api():
     if request.method == 'GET':
         url = request.args.get('url', type=str)
         if not url:
-            return '''
-                <!doctype html>
-                <title>Convert .doc to .pdf</title>
-                <h1>Convert .doc to .pdf</h1>
-                <h2>Upload new File</h2>
-                <form method=post enctype=multipart/form-data>
-                <input type=file name=file>
-                <input type=submit value=Upload>
-                <h2>or point to a file online</h2>
-                <p>You can provide the URL of a document to convert with the <code>url</code> query parameter.
-                For example <a href="/?url=http://homepages.inf.ed.ac.uk/neilb/TestWordDoc.doc">/?url=http://homepages.inf.ed.ac.uk/neilb/TestWordDoc.doc</a></p>
-                </form>
-                '''
+            return render_template('index.html')
         # Download from URL
         response = requests.get(url, stream=True)
         with open(input_file, 'wb') as file:
