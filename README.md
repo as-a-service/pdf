@@ -22,4 +22,3 @@ The following container image always reflects the latest version of the `master`
 
 * nicer landing page
 * handle concurrency
-* try to reduce container image size

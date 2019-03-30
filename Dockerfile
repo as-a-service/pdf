@@ -1,8 +1,6 @@
-FROM python:3
+FROM python:3-alpine
 
-RUN apt-get update && \
-	apt-get install -y \
-		libreoffice
+RUN apk add libreoffice
 
 ENV APP_HOME /app
 COPY . $APP_HOME
