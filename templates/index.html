@@ -1,13 +1,29 @@
 <!doctype html>
-<title>Convert .doc to .pdf</title>
-<h1>Convert .doc to .pdf</h1>
-<h2>Upload new File</h2>
-<form method=post enctype=multipart/form-data>
-    <input type=file name=file>
-    <input type=submit value=Upload>
-    <h2>or point to a file online</h2>
-    <p>You can provide the URL of a document to convert with the <code>url</code> query parameter.
-        For example <a
-            href="/?url=http://homepages.inf.ed.ac.uk/neilb/TestWordDoc.doc">/?url=http://homepages.inf.ed.ac.uk/neilb/TestWordDoc.doc</a>
-    </p>
-</form>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Convert .doc to .pdf</title>
+    <link rel="stylesheet" href="https://unpkg.com/awsm.css/dist/awsm.min.css">
+</head>
+
+<body>
+    <header>
+        <h1>Convert <code>.doc</code> to <code>.pdf</code></h1>
+        <p>
+            This service converts Word documents to PDF documents.
+        </p>
+    </header>
+    <main>
+        <form method="post" enctype=multipart/form-data>
+            <label for="file">Upload your file</label>
+            <input type="file" name="file" id="file">
+            <input type="submit" value="Upload">
+        </form>
+    </main>
+    <footer>
+        <p>You can also provide the URL of a document to convert with the <code>url</code> query parameter.
+            <br />For example <a
+                href="/?url=http://homepages.inf.ed.ac.uk/neilb/TestWordDoc.doc">/?url=http://homepages.inf.ed.ac.uk/neilb/TestWordDoc.doc</a>
+        </p>
+    </footer>
+</body>
