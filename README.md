@@ -20,5 +20,4 @@ The following container image always reflects the latest version of the `master`
 
 ## TODO
 
-* nicer landing page
 * handle concurrency
