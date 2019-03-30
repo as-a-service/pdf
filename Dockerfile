@@ -1,6 +1,9 @@
 FROM python:3-alpine
 
-RUN apk add libreoffice
+RUN apk add libreoffice \
+	msttcorefonts-installer fontconfig && \
+    update-ms-fonts && \
+    fc-cache -f
 
 ENV APP_HOME /app
 COPY . $APP_HOME
