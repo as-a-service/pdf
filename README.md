@@ -17,7 +17,3 @@ Run with `docker run -p 8080:8080 gcr.io/as-a-service-dev/pdf`
 ## Deploy to your server
 
 The following container image always reflects the latest version of the `master` branch of this repo: `gcr.io/as-a-service-dev/pdf`
-
-## TODO
-
-* handle concurrency

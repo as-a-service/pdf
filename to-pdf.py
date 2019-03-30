@@ -1,15 +1,15 @@
 import os
 import shutil
 import requests
+import tempfile
 
-from flask import Flask, render_template, request, send_file
+from flask import Flask, after_this_request, render_template, request, send_file
 from subprocess import call
 
 UPLOAD_FOLDER = '/tmp'
 ALLOWED_EXTENSIONS = set(['doc', 'docx', 'xls', 'xlsx'])
 
 app = Flask(__name__)
-app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 
 # Convert using Libre Office
@@ -25,14 +25,11 @@ def allowed_file(filename):
 
 @app.route('/', methods=['GET', 'POST'])
 def api():
+    work_dir = tempfile.TemporaryDirectory()
     file_name = 'document'
-    folder_name = 'convert'
-    input_dir = os.path.join('/tmp', folder_name)
-    input_file = os.path.join(input_dir, file_name)
-    output_dir = input_dir
-    output_file = os.path.join(output_dir, file_name + '.pdf')
-
-    os.mkdir(input_dir)
+    input_file_path = os.path.join(work_dir.name, file_name)
+    # Libreoffice is creating files with the same name but .pdf extension
+    output_file_path = os.path.join(work_dir.name, file_name + '.pdf')
 
     if request.method == 'POST':
         # check if the post request has the file part
@@ -42,7 +39,7 @@ def api():
         if file.filename == '':
             return 'No file provided'
         if file and allowed_file(file.filename):
-            file.save(input_file)
+            file.save(input_file_path)
 
     if request.method == 'GET':
         url = request.args.get('url', type=str)
@@ -50,21 +47,18 @@ def api():
             return render_template('index.html')
         # Download from URL
         response = requests.get(url, stream=True)
-        with open(input_file, 'wb') as file:
+        with open(input_file_path, 'wb') as file:
             shutil.copyfileobj(response.raw, file)
         del response
 
-    convert_file(output_dir, input_file)
+    convert_file(work_dir.name, input_file_path)
 
-    return send_file(output_file, mimetype='application/pdf')
-
-
-@app.after_request
-def cleanup(response):
-    location = '/tmp/convert'
-    if os.path.isdir(location):
-        shutil.rmtree(location)
-    return response
+    @after_this_request
+    def cleanup(response):
+        work_dir.cleanup()
+        return response
+ 
+    return send_file(output_file_path, mimetype='application/pdf')
 
 
 if __name__ == "__main__":
