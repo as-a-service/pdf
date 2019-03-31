@@ -63,5 +63,5 @@ def api():
 
 
 if __name__ == "__main__":
-    http_server = WSGIServer(('', os.environ.get('PORT', 8080)), app)
+    http_server = WSGIServer(('', int(os.environ.get('PORT', 8080))), app)
     http_server.serve_forever()
