@@ -3,6 +3,7 @@ import shutil
 import requests
 import tempfile
 
+from gevent.pywsgi import WSGIServer
 from flask import Flask, after_this_request, render_template, request, send_file
 from subprocess import call
 
@@ -62,4 +63,5 @@ def api():
 
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 8080)))
+    http_server = WSGIServer(('', os.environ.get('PORT', 8080)), app)
+    http_server.serve_forever()
