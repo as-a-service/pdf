@@ -4,7 +4,6 @@ ENV APP_HOME /app
 WORKDIR $APP_HOME
 
 RUN apk add libreoffice \
-	# Compiler needed for gevent
 	build-base \ 
 	# Install fonts
 	msttcorefonts-installer fontconfig && \
