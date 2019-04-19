@@ -17,3 +17,9 @@ Run with `docker run -p 8080:8080 gcr.io/as-a-service-dev/pdf`
 ## Deploy to your server
 
 The following container image always reflects the latest version of the `master` branch of this repo: `gcr.io/as-a-service-dev/pdf`
+
+## Deploy to Google Cloud
+
+[![Run on Google Cloud](https://storage.googleapis.com/cloudrun/button.png)](https://console.cloud.google.com/cloudshell/editor?shellonly=true&cloudshellboostmode=true&cloudshell_image=gcr.io/cloudrun/button&cloudshell_git_repo=https://github.com/as-a-service/pdf.git)
+
+Or use `gcloud beta run deploy --image gcr.io/as-a-service-dev/pdf`
