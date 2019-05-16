@@ -13,4 +13,5 @@ RUN apk add libreoffice \
 RUN pip install Flask requests gevent
 COPY . $APP_HOME
 
+RUN mkdir -p /etc/cups && echo "ServerName 127.0.0.1" > /etc/cups/client.conf
 CMD ["python", "to-pdf.py"]
