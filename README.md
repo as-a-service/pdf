@@ -23,3 +23,5 @@ The following container image always reflects the latest version of the `master`
 [![Run on Google Cloud](https://storage.googleapis.com/cloudrun/button.svg)](https://deploy.cloud.run)
 
 Or use `gcloud beta run deploy --image gcr.io/as-a-service-dev/pdf`
+
+![Cloud Build](https://badger-l7zawt5jsq-uw.a.run.app/build/status?project=as-a-service-dev&id=4dfdd64b-283d-4312-bab5-e98760ad02f1)
