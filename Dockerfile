@@ -10,6 +10,8 @@ RUN apk add libreoffice \
     update-ms-fonts && \
     fc-cache -f
 
+RUN apk add --no-cache build-base libffi libffi-dev
+
 RUN pip install Flask requests gevent
 COPY . $APP_HOME
 
