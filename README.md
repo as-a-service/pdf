@@ -1,5 +1,8 @@
 # "to PDF" as a service
 
+> [!WARNING]
+> This code is provided as is and has not been reviewed for security issues. Do not expose these services publicly and do not use in production.
+
 A simple web service that transforms the given document into a PDF file. 
 
 Run with `docker run -p 8080:8080 gcr.io/as-a-service-dev/pdf`
