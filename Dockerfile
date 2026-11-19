@@ -7,6 +7,8 @@ RUN apk add libreoffice \
 	build-base \ 
 	# Install fonts
 	msttcorefonts-installer fontconfig && \
+	# Install Calibri substitute from edge
+	apk add font-crosextra-carlito --repository=http://dl-cdn.alpinelinux.org/alpine/edge/testing && \
     update-ms-fonts && \
     fc-cache -f
 
